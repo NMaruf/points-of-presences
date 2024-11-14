@@ -1,0 +1,98 @@
+<table mat-table
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8">
+  @for (column of columnsToDisplay; track column.key) {
+    <!-- <ng-container matColumnDef="{{column.key}}"> -->
+    <ng-container matColumnDef="{{column.key}}">
+      <th mat-header-cell *matHeaderCellDef> {{column.name}}</th>
+      @if (column.key === "name") {
+        <td mat-cell *matCellDef="let element"> <a class="custom-link" href="#" target="_blank">{{element[column.key]}}</a> </td>
+    } @else if (column.key === "nextCallDate" || column.key === "lastCallDate") {  
+        <td mat-cell *matCellDef="let element">
+            {{element[column.key] | date:'dd.MM.yyyy'}}
+        </td>
+    } @else if (column.key === "nextActivityDate" || column.key === "lastActivityDate") {
+        <td mat-cell *matCellDef="let element">@if (!element[column.key]) {
+            <button mat-button>Создать</button>
+        } @else {
+            Банковский день
+            {{element[column.key] | date:'dd.MM.yyyy'}}
+        }
+        </td>
+      } @else {
+        <td mat-cell *matCellDef="let element">
+            {{element[column.key] }}
+        </td>
+      }
+    </ng-container>
+  }
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+        @if (expandedElement === element) {
+          <mat-icon>keyboard_arrow_up</mat-icon>
+        } @else {
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        }
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+           
+        <div class="field">
+            <label class="field-label">Закрепленный МРКП</label>
+            <div class="field-value">{{element.assignedMrkp}}</div>
+        </div>
+        <div class="field">
+            <label class="field-label">Закрепленный DSA</label>
+            <div class="field-value">{{element.assignedDsa}}</div>
+        </div>
+        <div class="field">
+            <label class="field-label">Контактное лицо</label>
+            <div class="field-value">{{element.clientMember}}</div>
+        </div>
+        <div class="field">
+            <label class="field-label">Должность</label>
+            <div class="field-value">{{element.position}}</div>
+        </div>
+        <div class="field">
+            <label class="field-label">Телефон</label>
+            <div class="field-value">{{element.phone}}</div>
+        </div>
+        <!-- <div class="example-element-diagram"> -->
+          <!-- <div class="example-element-position"> {{element.assignedDsa}} </div>
+          <div class="example-element-symbol"> {{element.assignedMrkp}} </div> -->
+          <!-- <div class="example-element-name"> {{element.name}} </div>
+          <div class="example-element-weight"> {{element.weight}} </div> -->
+        <!-- </div> -->
+        <!-- <div class="example-element-description">
+          {{element.clientSlxId}}
+          <span class="example-element-description-attribution"> -- Wikipedia </span>
+        </div> -->
+    </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumnsWithExpand"></tr>
+  <tr mat-row *matRowDef="let element; columns: displayedColumnsWithExpand;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element.key"
+      (click)="expandedElement = expandedElement === element.key ? null : element.key">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+   
+
+   <!-- <tr mat-header-row *matHeaderRowDef=[columnsToDisplayWithExpand.map(column => column.key)]></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand.map(column => column.key);"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element.key"
+      (click)="expandedElement = expandedElement === element.key ? null : element.key">
+  </tr>
+   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>  -->
+</table>

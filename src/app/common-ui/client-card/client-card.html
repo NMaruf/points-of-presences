@@ -1,0 +1,29 @@
+@if (client) {
+    <mat-card class="example-card" appearance="outlined">
+        <mat-card-header class="card_header">
+          <mat-card-title>{{client.clientName?.RU}}</mat-card-title>
+          <!-- <mat-card-title>{{client.clientInn}}</mat-card-title> -->
+          <!-- <pre>{{ client | json}} </pre> -->
+          <!-- <img src="https://cdn-icons-png.flaticon.com/128/3772/3772760.png" width="50" width="50"> -->
+          <img src={{[client.logo]}} width="150" width="100">
+        </mat-card-header>
+        <mat-card-content>
+          <!-- <p>{{longText}}</p> -->
+          <p>ИНН: {{client.clientInn}}</p>
+          <p>Численность: {{client.employeeNumber}}</p>
+        </mat-card-content>
+        <mat-card-footer class="example-card-footer">
+          <mat-chip-set aria-label="Chihuahua traits">
+            <mat-chip>Риск оттока</mat-chip>
+            <mat-chip>Пенсионер</mat-chip>
+            <mat-chip>Предодобы до 30%</mat-chip>
+          </mat-chip-set>
+          <mat-card-actions class="card_buttons">
+            <button mat-button (click)="openDialog()"
+        >{{ client.cardIssuedOpenCount }} карт к выдаче</button>
+          <button mat-button (click)="openDialog()">Точки присутствия</button>
+          </mat-card-actions>
+        </mat-card-footer>
+      </mat-card>
+}
+

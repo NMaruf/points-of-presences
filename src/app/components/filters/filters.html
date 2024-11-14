@@ -1,0 +1,77 @@
+<div class="filters_container">
+  <mat-form-field class="filter_item">
+    <mat-label>Последний звонок</mat-label>
+    <mat-date-range-input [rangePicker]="picker1">
+      <input matStartDate placeholder="__.__.____">
+      <input matEndDate placeholder="__.__.____">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker1></mat-date-range-picker>
+  </mat-form-field>
+  <mat-form-field class="filter_item">
+    <mat-label>Следующий звонок</mat-label>
+    <mat-date-range-input [rangePicker]="picker2">
+      <input matStartDate placeholder="__.__.____">
+      <input matEndDate placeholder="__.__.____">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker2></mat-date-range-picker>
+  </mat-form-field>
+  <mat-form-field class="filter_item">
+    <mat-label>Последняя активность</mat-label>
+    <mat-date-range-input [rangePicker]="picker3">
+      <input matStartDate placeholder="__.__.____">
+      <input matEndDate placeholder="__.__.____">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker3></mat-date-range-picker>
+  </mat-form-field>
+  <mat-form-field class="filter_item">
+    <mat-label>Следующая активность</mat-label>
+    <mat-date-range-input [rangePicker]="picker4">
+      <input matStartDate placeholder="__.__.____">
+      <input matEndDate placeholder="__.__.____">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker4></mat-date-range-picker>
+  </mat-form-field>
+  <mat-form-field class="filter_item">
+    <mat-label>Статус</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="status">
+      @for (status of statuses; track status) {
+        <mat-option [value]="status.value">{{status.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="filter_item">
+    <mat-label>Предодобы</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="predodob">
+      @for (predodob of predodobies; track predodob) {
+        <mat-option [value]="predodob.value">{{predodob.viewValue}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="filter_item">
+    <mat-label>Закрепленный МРКП</mat-label>
+    <input matInput>
+  </mat-form-field>
+  <mat-form-field class="filter_item" color="primary">
+    <mat-label>Закрепленный DSA</mat-label>
+    <input matInput>
+  </mat-form-field>
+    <mat-chip class="filter_chip">Отток</mat-chip>
+    <mat-chip class="filter_chip">Потенциал в ИЗП</mat-chip>
+    <mat-chip class="filter_chip">Есть карты к выдаче</mat-chip>
+    <mat-chip class="filter_chip">Просроченные звонки</mat-chip>
+    <mat-chip class="filter_chip">Пенсионер</mat-chip>
+    <mat-chip class="filter_chip">Ключевой клиент</mat-chip>
+    <button mat-flat-button>Применить фильтры</button>
+</div>
+<mat-form-field class="filter_search">
+    <mat-label>ИНН, название, расположение</mat-label>
+    <input matInput type="text" >
+    <button matSuffix mat-icon-button
+    >
+        <mat-icon>search</mat-icon>
+    </button>
+</mat-form-field>

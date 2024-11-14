@@ -1,0 +1,10 @@
+<div *mobxAutorun class="card_container">
+    <!-- <pre>{{ clients | json}} </pre> -->
+    <!-- @for (client of clients; track client.clientSlxId) { -->
+        @for (client of store.clients; track client.clientSlxId) {
+        <!-- <pre>{{ clients | json}} </pre> -->
+        <client-card
+            [client]="client">
+        </client-card>
+    }
+</div>

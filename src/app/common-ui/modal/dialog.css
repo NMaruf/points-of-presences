@@ -1,0 +1,25 @@
+/* .mat-mdc-dialog-panel {
+    width: 900px;
+} */
+
+/* .mat-mdc-dialog-surface {
+    min-width: 900px;
+} */
+/* .mdc-dialog__surface {
+    min-width: 900px !important;
+    max-width: 900px !important;
+} */
+
+
+
+
+.dialog-container {
+    /* min-width: 550px; */
+    padding: 30px 30px 30px 30px 
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+}
+
